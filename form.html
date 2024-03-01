@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+</head>
+<body>
+    <h2>Welcome!</h2>
+
+    <p id="user-info"></p>
+
+    <form method="POST" action="apply-now.php">
+		<input name="subject" type="hidden"	value="Class" />
+		<p>Degree:
+		 <select name="degree">
+			 <option value="BA"> Bachelor of Art</option>
+			 <option value="BS"> Bachelor of Science</option>
+			 <option value="MBA" selected="true"> Master of Business Administration</option>
+   
+		 <select>
+		 </p>
+		 <p>
+			 First Name: <input type="text" name="FirstName" />
+		 </p>
+		 <p>
+			 Last Name: <input type="text" name="LastName">
+		 </p>
+		 <p>
+			 Student ID: <input type="text" name="StudentID">
+		 </p>
+   
+		 <p>
+			 Gender: <input name="gender" type="radio" value="Male" checked="true" /> Male
+			 <input name="gender" type="radio" value="Female" checked="true" /> Female
+		 </p>
+		 <p>
+			 E-mail: <input type="email" name="email" value="" />
+		 </p>
+		 <p>
+			 <textarea name="terms" cols="30" rows="4" readonly="true">Terms and Conditions
+	   By clicking the Send Form button you agree to submit this form.</textarea>
+		 </p>
+		 <p>
+			 <input type="submit" name="button" value="Send Form" />
+		 </p>
+   
+	   </form>
+
+    <!-- Slider -->
+    <div class="slider-container">
+		<label for="number-slider">Select a number (increments of 10):</label>
+		<input type="range" id="number-slider" min="0" max="100" step="10" value="0">
+		<span id="slider-value">0</span>
+	</div>
+
+    <script>
+        // Function to get URL parameters
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Retrieve username from URL parameters
+        var username = getParameterByName('username');
+
+        // Display logged-in user info
+        if (username) {
+            document.getElementById('user-info').innerText = `Logged in as: ${username}`;
+        } else {
+            document.getElementById('user-info').innerText = 'Please log in to see user information.';
+        }
+
+        // Slider functionality
+            // Get the range input and span element
+    const slider = document.getElementById('number-slider');
+    const sliderValue = document.getElementById('slider-value');
+
+    // Update the span element with the slider value
+    sliderValue.textContent = slider.value;
+
+    // Update the slider value on input change
+    slider.addEventListener('input', function() {
+        sliderValue.textContent = this.value;
+    });
+
+    // Ensure that the slider value increments/decrements by 10
+    slider.addEventListener('change', function() {
+        // Round the value to the nearest multiple of 10
+        let newValue = Math.round(this.value / 10) * 10;
+        this.value = newValue;
+        sliderValue.textContent = newValue;
+    });
+    </script>
+</body>
+</html>

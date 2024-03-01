@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+
+<div>
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="return validateForm()" method="get" action="form.html">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+        <div id="error"></div>
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var validUsername = "1234";
+        var validPassword = "1234";
+
+        // Check if both username and password are provided
+        if (username === validUsername && password === validPassword) {
+            return true;
+        } else {
+            document.getElementById("error").innerText = "Incorrect username or password";
+            return false; // Prevent default form submission
+        }
+    }
+</script>
+
+</body>
+</html>
